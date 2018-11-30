@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4914604B-89F2-41B9-9EE7-197AA9FA5D6E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ProblemOfTheWeek_20181118</RootNamespace>
-    <AssemblyName>ProblemOfTheWeek_20181118</AssemblyName>
+    <RootNamespace>ProblemOfTheWeek_20181128</RootNamespace>
+    <AssemblyName>ProblemOfTheWeek_20181128</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
