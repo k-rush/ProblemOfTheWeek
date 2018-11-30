@@ -58,9 +58,63 @@ namespace ProblemOfTheWeek_20181128
 
         public static int CountOptimized(int[] a)
         {
-            throw new NotImplementedException();
+            int n = a.Length;
+            a = a.OrderBy(k => k).ToArray();
+            int count = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = i + 1; j < n; j++)
+                {
+                    count += GetNumberCount(-(a[i] + a[j]), a);
+                }
+            }
+            return (int)Math.Floor((double)(count + 2) / 3);
         }
 
-        
+        private static Dictionary<int, int> numbersCount = new Dictionary<int, int>();
+        //Gets the count of a certain number in a given array.  Uses memoization.
+        public static int GetNumberCount(int partialSum, int[] a)
+        {
+            if (numbersCount.ContainsKey(partialSum))
+            {
+                return numbersCount[partialSum];
+            }
+            else
+            {
+
+                int count = BinarySearchCounter(partialSum, a);
+                numbersCount[partialSum] = count;
+                return count;
+            }
+        }
+
+        //Finds and counts a given key in a sorted array starting with a binary search.
+        public static int BinarySearchCounter(int key, int[] a)
+        {
+            int lower = 0;
+            int upper = a.Length - 1;
+            int index;
+            int count = 0;
+            while ((upper - lower) > 1)
+            {
+                index = lower + (int)Math.Floor(((double)(upper - lower) / 2));
+                if (key == a[index])
+                {
+                    count = 1;
+                    int incrementingIndex = index + 1;
+                    int decrementingIndex = index - 1;
+                    while (incrementingIndex < (a.Length - 1) && key == a[incrementingIndex++]) count++;
+                    while (decrementingIndex > 0 && key == a[decrementingIndex--]) count++;
+                    return count;
+                }
+                else if (key < a[index]) upper = index;
+                else if (key > a[index]) lower = index;
+            }
+            return 0;
+
+        }
+
+
     }
 }
